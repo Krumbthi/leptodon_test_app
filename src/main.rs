@@ -18,6 +18,7 @@
 // If not, see <http://www.apache.org/licenses/>
 
 use cfg_if::cfg_if;
+use starter::database::init_database;
 
 // boilerplate to run in different modes
 cfg_if! {
@@ -30,6 +31,10 @@ cfg_if! {
             use leptos::prelude::*;
             use leptos_axum::{LeptosRoutes, generate_route_list};
             use starter::app::*;
+
+            // Initialize database
+            let db = init_database().await.expect("Failed to initialize database");
+            log!("Database initialized successfully");
 
             let conf = get_configuration(None).unwrap();
             let addr = conf.leptos_options.site_addr;

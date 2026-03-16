@@ -18,6 +18,9 @@
 // If not, see <http://www.apache.org/licenses/>
 
 pub mod app;
+pub mod database;
+pub mod models;
+pub mod repositories;
 
 #[cfg(feature = "hydrate")]
 #[wasm_bindgen::prelude::wasm_bindgen]
