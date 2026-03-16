@@ -62,6 +62,7 @@ pub fn RouteShell() -> impl IntoView {
             <SideNavbar>
                 <NavbarEntries slot:entries>
                     <li><SideBarLink href="home" icon=icon::HomeIcon()>Home</SideBarLink></li>
+                    <li><SideBarLink href="workout" icon=icon::TaskIcon()>Workout</SideBarLink></li>
                     <li><SideBarLink href="test" icon=icon::InfoIcon()>Info</SideBarLink></li>
                 </NavbarEntries>
                 <NavbarEndChildren slot:end>
@@ -87,6 +88,7 @@ pub fn App() -> impl IntoView {
             <Routes fallback=|| "Page not found.">
                 <ParentRoute path=StaticSegment("/") view=RouteShell>
                     <Route path=StaticSegment("/home") view=Home/>
+                    <Route path=StaticSegment("/workout") view=Workout/>
                     <Route path=StaticSegment("/test") view=Test/>
                 </ParentRoute>
             </Routes>
@@ -99,6 +101,72 @@ fn Home() -> impl IntoView {
     view! {
         <Title text="Welcome" />
         <p>Hello World!</p>
+    }
+}
+
+#[component]
+fn Workout() -> impl IntoView {
+    view! {
+        <Title text="Workout Tracker" />
+        <main class="flex justify-center align-center min-h-full mt-[100px]">
+            <div class="w-full max-w-4xl">
+                <h1 class="font-bold text-4xl mb-8">Workout Tracker</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-semibold mb-4">Add Exercise</h2>
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Exercise Name</label>
+                                <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Sets</label>
+                                    <input type="number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Reps</label>
+                                    <input type="number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Weight (kg)</label>
+                                    <input type="number" step="0.5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Date</label>
+                                    <input type="date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <Button appearance=ButtonAppearance::Primary>Add Exercise</Button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-semibold mb-4">Recent Workouts</h2>
+                        <div class="space-y-4">
+                            <div class="border-b border-gray-200 dark:border-gray-600 pb-4">
+                                <h3 class="font-medium">Bench Press</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">3 sets x 10 reps @ 60kg</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-500">2024-03-16</p>
+                            </div>
+                            <div class="border-b border-gray-200 dark:border-gray-600 pb-4">
+                                <h3 class="font-medium">Squats</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">4 sets x 8 reps @ 80kg</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-500">2024-03-15</p>
+                            </div>
+                            <div>
+                                <h3 class="font-medium">Deadlift</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">3 sets x 5 reps @ 100kg</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-500">2024-03-14</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     }
 }
 

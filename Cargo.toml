@@ -26,8 +26,8 @@ opt-level = 3
 debug = 2
 
 [dependencies]
-http = "1"
-tower = { version = "0.5.0", optional = true }
+http = "1.0"
+tower = { version = "0.5", optional = true }
 tower-http = { version = "0.5", features = ["fs"], optional = true }
 axum = { version = "0.8.7", optional = true, features = ["macros"] }
 
